@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import NewSongForm from "./NewSongForm";
 
 const SongList = () => {
   const [songs, setSongs] = useState([
@@ -7,8 +8,8 @@ const SongList = () => {
     { title: "this wild darkness", id: 3 },
   ]);
   //console.log(songs);
-  const addSong = () => {
-    setSongs([...songs, { title: "new song", id: 4 }]);
+  const addSong = (title) => {
+    setSongs([...songs, { title, id: Math.random }]);
   };
   return (
     <div className="song-list">
@@ -17,7 +18,7 @@ const SongList = () => {
           <li key={index}>{song.title}</li>
         ))}
       </ul>
-      <button onClick={addSong}>Add a song</button>
+      <NewSongForm addSong={addSong} />
     </div>
   );
 };
