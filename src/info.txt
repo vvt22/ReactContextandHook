@@ -1,0 +1,55 @@
+Which centralizes all of our methods for changing state into a function.
+reducers can be break into 3 different parts:
+1. reducer function : which interact with state 
+2. Action object -describes type of change 
+3. Dispatch function
+
+
+First of all we create an action object that describes type of change 
+ex: {type:"ADD_BOOK",book:{}}   //here book is to be added
+Next is to dispatch that action to reducer using a dispatch function
+ex:dispatch(    {type:"ADD_BOOK",book:{}}   )
+|||||
+reducer(state,action)
+WHEN THE REDUCER FUNCTION RUNS:-
+IT CHECKS THE TYPE OF ACTION
+UPDATE THE STATE OBJECT 
+RETURN THE STATE //that goes into provider value
+
+
+
+
+
+
+
+import react, { createContext, useState, useReducer } from 'react';
+const AgeContext = createContext();
+const ageReducer = (state, action) =>{
+switch(action.type){
+    case 'ADD ONE':
+     return state + 1; 
+    case 'ADD FIVE':
+     return state + 5;
+    case 'ADD_NUM:
+     return state + action.num;
+    default:
+     return state;
+ }
+}
+dispatch({type:'ADD ONE' });
+dispatch({type:'ADD_NUM', num: 7});
+const AgeContextProvider = (props) => {  
+const [age, dispatch] = useReducer(ageReducer, 20)
+
+// const [age, setAge] useState(20);
+// const addOneToAge = () => setAge(age + 1);
+// const addFiveToAge = () => setAge(age + 5);
+// const addNumToAge = (num) => setAge(age + num);
+
+return (
+<AgeContext.Provider value={age, dispatch}>
+{props.children}
+</AgeContext.Provider>
+)
+}
+
