@@ -21,12 +21,14 @@ const NewBookForm = () => {
         placeholder="book title"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
+        required
       />
       <input
         type="text"
         placeholder="author name"
         value={author}
         onChange={(e) => setAuthor(e.target.value)}
+        required
       />
       <input type="submit" value="add book" />
     </form>
